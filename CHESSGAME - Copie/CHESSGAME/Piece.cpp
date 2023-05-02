@@ -8,11 +8,11 @@
 
 #include "Piece.h"
 
-Piece::Piece(PieceColour colour, int x, int y, std::string name, QString icon)	:	name_(name),
-																					x_(x),
-																					y_(y),
-																					colour_(colour),	
-																					icon_(icon) {}
+Piece::Piece(pieceColour colour, int x, int y, pieceName name, QString icon) : name_(name),
+																		       x_(x),
+																			   y_(y),
+																			   colour_(colour),	
+																			   icon_(icon) {}
 
 
 void Piece::setPos(int newX, int newY)
@@ -21,7 +21,7 @@ void Piece::setPos(int newX, int newY)
 	y_ = newY;
 }
 
-Pawn::Pawn(PieceColour colour, int x, int y, std::string name, QString icon)
+Pawn::Pawn(pieceColour colour, int x, int y, pieceName name, QString icon)
 	: Piece(colour, x, y, name, icon)
 {
 }
@@ -30,7 +30,7 @@ void Pawn::behaviour() const
 {
 }
 
-Rook::Rook(PieceColour colour, int x, int y, std::string name, QString icon)
+Rook::Rook(pieceColour colour, int x, int y, pieceName name, QString icon)
 	: Piece(colour, x, y, name, icon)
 {
 }
@@ -39,7 +39,7 @@ void Rook::behaviour() const
 {
 }
 
-Bishop::Bishop(PieceColour colour, int x, int y, std::string name, QString icon)
+Bishop::Bishop(pieceColour colour, int x, int y, pieceName name, QString icon)
 	: Piece(colour, x, y, name, icon)
 {
 }
@@ -48,11 +48,11 @@ void Bishop::behaviour() const
 {
 }
 
-King::King(PieceColour colour, int x, int y, std::string name, QString icon)
+King::King(pieceColour colour, int x, int y, pieceName name, QString icon)
 	: Piece(colour, x, y, name, icon)
 {
 	count_ += 1;
-	if(count_ >2){
+	if (count_ > 2) {
 		QMessageBox msgBox;
 		msgBox.setText("More than two Kings added.");
 		msgBox.exec();
@@ -66,7 +66,7 @@ void King::behaviour() const
 {
 }
 
-Queen::Queen(PieceColour colour, int x, int y, std::string name, QString icon)
+Queen::Queen(pieceColour colour, int x, int y, pieceName name, QString icon)
 	: Piece(colour, x, y, name, icon)
 {
 }
@@ -75,7 +75,7 @@ void Queen::behaviour() const
 {
 }
 
-Knight::Knight(PieceColour colour, int x, int y, std::string name, QString icon)
+Knight::Knight(pieceColour colour, int x, int y, pieceName name, QString icon)
 	: Piece(colour, x, y, name, icon)
 {
 }

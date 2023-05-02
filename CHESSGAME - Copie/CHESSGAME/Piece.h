@@ -14,16 +14,28 @@
 #include <QGridLayout>
 #include <qstring.h>
 #include <QMessageBox>
+#include <string>
 
-namespace pieceName {
-	const std::string PIECE = "PIECE";
-	const std::string KING = "KING";
-	const std::string ROOK = "ROOK";
-	const std::string BISHOP = "BISHOP";
-	const std::string PAWN = "PAWN";
-	const std::string QUEEN = "QUEEN";
-	const std::string KNIGHT = "KNIGHT";
-}
+namespace pieceCharacteristics
+{
+
+
+};
+
+enum class pieceName {
+	PIECE,
+	KING,
+	ROOK,
+	BISHOP,
+	PAWN,
+	QUEEN,
+	KNIGHT
+};
+
+enum class pieceColour {
+	WHITE,
+	BLACK
+};
 
 namespace png {
 	const QString kingIconBlack = "./photos/KingBlack.png";			/*drawing by Artist: Andreea Maria Ghioltan and Maria Bourouisa*/
@@ -40,16 +52,11 @@ namespace png {
 	const QString knightIconBlack = "./photos/KnightBlack.png";      /*drawing by Artist: Andreea Maria Ghioltan and Maria Bourouisa*/
 }
 
-enum class PieceColour {
-	WHITE,
-	BLACK
-};
-
 class Piece {
 
 public:
 	virtual ~Piece() = default;
-	Piece(PieceColour colour, int x, int y, std::string name, QString icon);
+	Piece(pieceColour colour, int x, int y, pieceName name, QString icon);
 	virtual void behaviour() const = 0;
 	void setPos(int newX, int newY);
 	bool validMove() { return movement_(x_, y_); };
@@ -60,8 +67,8 @@ public:
 	int getY() { return y_; };
 
 protected:
-	std::string name_;
-	PieceColour colour_;
+	pieceName name_;
+	pieceColour colour_;
 	QString icon_;
 	std::function<bool(int x, int y)> movement_;
 	int x_;
@@ -71,43 +78,43 @@ protected:
 class Rook : public Piece {
 public:
 	Rook() = default;
-	Rook(PieceColour colour, int x, int y, std::string name, QString icon);
+	Rook(pieceColour colour, int x, int y, pieceName name, QString icon);
 	void behaviour() const override;
 };
 
 class Bishop : public Piece {
 public:
 	Bishop() = default;
-	Bishop(PieceColour colour, int x, int y, std::string name, QString icon);
+	Bishop(pieceColour colour, int x, int y, pieceName name, QString icon);
 	void behaviour() const override;
 };
 
 class King : public Piece {
 public:
 	King() = default;
-	King(PieceColour colour, int x, int y, std::string name, QString icon);
+	King(pieceColour colour, int x, int y, pieceName name, QString icon);
 	void behaviour() const override;
 private:
 	static int count_;
 };
 
 class Pawn : public Piece {
-	public:
+public:
 	Pawn() = default;
-	Pawn(PieceColour colour, int x, int y, std::string name, QString icon);
+	Pawn(pieceColour colour, int x, int y, pieceName name, QString icon);
 	void behaviour() const override;
 };
 
 class Queen : public Piece {
 public:
 	Queen() = default;
-	Queen(PieceColour colour, int x, int y, std::string name, QString icon);
+	Queen(pieceColour colour, int x, int y, pieceName name, QString icon);
 	void behaviour() const override;
 };
 
 class Knight : public Piece {
-	public:
+public:
 	Knight() = default;
-	Knight(PieceColour colour, int x, int y, std::string name, QString icon);
+	Knight(pieceColour colour, int x, int y, pieceName, QString icon);
 	void behaviour() const override;
 };
