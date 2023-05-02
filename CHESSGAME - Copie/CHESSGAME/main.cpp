@@ -14,7 +14,6 @@
 #include <memory>
 #include "RAII.h"
 
-using namespace pieceName;
 using namespace png;
 
 int main(int argc, char *argv[])
@@ -27,47 +26,47 @@ int main(int argc, char *argv[])
     std::vector<std::shared_ptr<Piece>> piecesAdded;
     try 
     {
-    piecesAdded.push_back(std::make_shared<King>(PieceColour::WHITE, 7, 4, KING, kingIconWhite));
-    piecesAdded.push_back(std::make_shared<King>(PieceColour::BLACK, 0, 4, KING, kingIconBlack));
+    piecesAdded.push_back(std::make_shared<King>(pieceColour::WHITE, 7, 4, pieceName::KING, kingIconWhite));
+    piecesAdded.push_back(std::make_shared<King>(pieceColour::BLACK, 0, 4, pieceName::KING, kingIconBlack));
     }
     catch (...) {
 
     }
-    piecesAdded.push_back(std::make_shared<Bishop>(PieceColour::WHITE, 7, 2, BISHOP, bishopIconWhite));
-    piecesAdded.push_back(std::make_shared<Bishop>(PieceColour::BLACK, 0, 5, BISHOP, bishopIconBlack));
-    piecesAdded.push_back(std::make_shared<Bishop>(PieceColour::WHITE, 7, 5, BISHOP, bishopIconWhite));
-    piecesAdded.push_back(std::make_shared<Bishop>(PieceColour::BLACK, 0, 2, BISHOP, bishopIconBlack));
+    piecesAdded.push_back(std::make_shared<Bishop>(pieceColour::WHITE, 7, 2, pieceName::BISHOP, bishopIconWhite));
+    piecesAdded.push_back(std::make_shared<Bishop>(pieceColour::BLACK, 0, 5, pieceName::BISHOP, bishopIconBlack));
+    piecesAdded.push_back(std::make_shared<Bishop>(pieceColour::WHITE, 7, 5, pieceName::BISHOP, bishopIconWhite));
+    piecesAdded.push_back(std::make_shared<Bishop>(pieceColour::BLACK, 0, 2, pieceName::BISHOP, bishopIconBlack));
 
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::WHITE, 6, 0, PAWN, pawnIconWhite));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::WHITE, 6, 1, PAWN, pawnIconWhite));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::WHITE, 6, 2, PAWN, pawnIconWhite));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::WHITE, 6, 3, PAWN, pawnIconWhite));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::WHITE, 6, 4, PAWN, pawnIconWhite));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::WHITE, 6, 5, PAWN, pawnIconWhite));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::WHITE, 6, 6, PAWN, pawnIconWhite));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::WHITE, 6, 7, PAWN, pawnIconWhite));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::WHITE, 6, 0, pieceName::PAWN, pawnIconWhite));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::WHITE, 6, 1, pieceName::PAWN, pawnIconWhite));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::WHITE, 6, 2, pieceName::PAWN, pawnIconWhite));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::WHITE, 6, 3, pieceName::PAWN, pawnIconWhite));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::WHITE, 6, 4, pieceName::PAWN, pawnIconWhite));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::WHITE, 6, 5, pieceName::PAWN, pawnIconWhite));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::WHITE, 6, 6, pieceName::PAWN, pawnIconWhite));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::WHITE, 6, 7, pieceName::PAWN, pawnIconWhite));
 
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::BLACK, 1, 0, PAWN, pawnIconBlack));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::BLACK, 1, 1, PAWN, pawnIconBlack));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::BLACK, 1, 2, PAWN, pawnIconBlack));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::BLACK, 1, 3, PAWN, pawnIconBlack));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::BLACK, 1, 4, PAWN, pawnIconBlack));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::BLACK, 1, 5, PAWN, pawnIconBlack));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::BLACK, 1, 6, PAWN, pawnIconBlack));
-    piecesAdded.push_back(std::make_shared<Pawn>(PieceColour::BLACK, 1, 7, PAWN, pawnIconBlack));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::BLACK, 1, 0, pieceName::PAWN, pawnIconBlack));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::BLACK, 1, 1, pieceName::PAWN, pawnIconBlack));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::BLACK, 1, 2, pieceName::PAWN, pawnIconBlack));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::BLACK, 1, 3, pieceName::PAWN, pawnIconBlack));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::BLACK, 1, 4, pieceName::PAWN, pawnIconBlack));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::BLACK, 1, 5, pieceName::PAWN, pawnIconBlack));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::BLACK, 1, 6, pieceName::PAWN, pawnIconBlack));
+    piecesAdded.push_back(std::make_shared<Pawn>(pieceColour::BLACK, 1, 7, pieceName::PAWN, pawnIconBlack));
 
-    piecesAdded.push_back(std::make_shared<Rook>(PieceColour::WHITE, 7, 0, ROOK, rookIconWhite));
-    piecesAdded.push_back(std::make_shared<Rook>(PieceColour::WHITE, 7, 7, ROOK, rookIconWhite));
-    piecesAdded.push_back(std::make_shared<Rook>(PieceColour::BLACK, 0, 0, ROOK, rookIconBlack));
-    piecesAdded.push_back(std::make_shared<Rook>(PieceColour::BLACK, 0, 7, ROOK, rookIconBlack));
+    piecesAdded.push_back(std::make_shared<Rook>(pieceColour::WHITE, 7, 0, pieceName::ROOK, rookIconWhite));
+    piecesAdded.push_back(std::make_shared<Rook>(pieceColour::WHITE, 7, 7, pieceName::ROOK, rookIconWhite));
+    piecesAdded.push_back(std::make_shared<Rook>(pieceColour::BLACK, 0, 0, pieceName::ROOK, rookIconBlack));
+    piecesAdded.push_back(std::make_shared<Rook>(pieceColour::BLACK, 0, 7, pieceName::ROOK, rookIconBlack));
 
-    piecesAdded.push_back(std::make_shared<Knight>(PieceColour::WHITE, 7, 1, KNIGHT, knightIconWhite));
-    piecesAdded.push_back(std::make_shared<Knight>(PieceColour::WHITE, 7, 6, KNIGHT, knightIconWhite));
-    piecesAdded.push_back(std::make_shared<Knight>(PieceColour::BLACK, 0, 1, KNIGHT, knightIconBlack));
-    piecesAdded.push_back(std::make_shared<Knight>(PieceColour::BLACK, 0, 6, KNIGHT, knightIconBlack));
+    piecesAdded.push_back(std::make_shared<Knight>(pieceColour::WHITE, 7, 1, pieceName::KNIGHT, knightIconWhite));
+    piecesAdded.push_back(std::make_shared<Knight>(pieceColour::WHITE, 7, 6, pieceName::KNIGHT, knightIconWhite));
+    piecesAdded.push_back(std::make_shared<Knight>(pieceColour::BLACK, 0, 1, pieceName::KNIGHT, knightIconBlack));
+    piecesAdded.push_back(std::make_shared<Knight>(pieceColour::BLACK, 0, 6, pieceName::KNIGHT, knightIconBlack));
 
-    piecesAdded.push_back(std::make_shared<Queen>(PieceColour::WHITE, 7, 3, QUEEN, queenIconWhite));
-    piecesAdded.push_back(std::make_shared<Queen>(PieceColour::BLACK, 0, 3, QUEEN, queenIconBlack));
+    piecesAdded.push_back(std::make_shared<Queen>(pieceColour::WHITE, 7, 3, pieceName::QUEEN, queenIconWhite));
+    piecesAdded.push_back(std::make_shared<Queen>(pieceColour::BLACK, 0, 3, pieceName::QUEEN, queenIconBlack));
  
 
     for (auto& piece : piecesAdded) {
