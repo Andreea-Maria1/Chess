@@ -14,23 +14,27 @@
 #include <memory>
 #include "Piece.h"
 
+struct Position
+{
+    int x, y;
+    Position(int x = 0, int y = 0) : x(x), y(y) {};
+};
 
 class Button : public QPushButton {
     Q_OBJECT
 
 public:
-    Button( int x = 0, int y = 0, QWidget* parent = nullptr);
+
+    Button(int x, int y, QWidget* parent = nullptr);
     ~Button() = default;
     std::shared_ptr<Piece> getPiece() const;
     void setPiece(std::shared_ptr<Piece> piece);
-    int getPosX() const;
-    int getPosY() const;
+    Position getPosition() const;
 
 public slots:
     void handleClick();
 
 private:
     std::shared_ptr<Piece> pieceOfSquare_ = nullptr;
-    int posX_;
-    int posY_;
+    Position position_;
 };
