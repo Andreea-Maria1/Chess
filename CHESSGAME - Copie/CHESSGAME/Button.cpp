@@ -8,7 +8,7 @@
 
 #include "Button.h"
 
-Button::Button(int x, int y, QWidget* parent) : position_(x,y), QPushButton(parent)
+Button::Button(int x, int y, QWidget* parent) : positionButton_(x,y), QPushButton(parent)
 {
 	setIconSize(QSize(90, 90));
 	setFixedSize(100, 100);
@@ -26,7 +26,7 @@ void Button::setPiece(std::shared_ptr<Piece> piece) {
 		return;
 	}
 	setIcon(QIcon(QString(piece->getIcon())));
-	piece->setPos(position_.x, position_.y);
+	piece->setPos(positionButton_.x, positionButton_.y);
 }
 
 std::shared_ptr<Piece> Button::getPiece() const {
@@ -35,5 +35,5 @@ std::shared_ptr<Piece> Button::getPiece() const {
 
 Position Button::getPosition() const
 {
-	return position_;
+	return positionButton_;
 }

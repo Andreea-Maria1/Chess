@@ -36,5 +36,5 @@ public slots:
 
 private:
     std::shared_ptr<Piece> pieceOfSquare_ = nullptr;
-    Position position_;
+    Position positionButton_;
 };
