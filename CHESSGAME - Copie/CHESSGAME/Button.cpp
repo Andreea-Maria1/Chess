@@ -33,7 +33,7 @@ std::shared_ptr<Piece> Button::getPiece() const {
 	return pieceOfSquare_;
 }
 
-Position Button::getPosition() const
+Position Button::getPositionButton() const
 {
 	return positionButton_;
 }

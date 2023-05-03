@@ -29,7 +29,7 @@ public:
     ~Button() = default;
     std::shared_ptr<Piece> getPiece() const;
     void setPiece(std::shared_ptr<Piece> piece);
-    Position getPosition() const;
+    Position getPositionButton() const;
 
 public slots:
     void handleClick();
