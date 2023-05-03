@@ -15,6 +15,7 @@
 #include <qstring.h>
 #include <QMessageBox>
 #include <string>
+#include "Position.h"
 
 namespace pieceCharacteristics
 {
@@ -59,20 +60,22 @@ public:
 	Piece(pieceColour colour, int x, int y, pieceName name, QString icon);
 	virtual void behaviour() const = 0;
 	void setPos(int newX, int newY);
-	bool validMove() { return movement_(x_, y_); };
+	bool validMove() { return movement_(positionPiece_.x, positionPiece_.y); };
 	//void affichage(); // affiche les pieces
+	Position getPositionPiece() const;
 
 	QString getIcon() { return icon_; };
-	int getX() { return x_; };
-	int getY() { return y_; };
+	//int getX() { return x_; };
+	//int getY() { return y_; };
 
 protected:
 	pieceName name_;
 	pieceColour colour_;
 	QString icon_;
 	std::function<bool(int x, int y)> movement_;
-	int x_;
-	int y_;
+	Position positionPiece_;
+	//int x_;
+	//int y_;
 };
 
 class Rook : public Piece {

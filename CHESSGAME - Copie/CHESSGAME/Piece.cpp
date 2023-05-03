@@ -9,16 +9,15 @@
 #include "Piece.h"
 
 Piece::Piece(pieceColour colour, int x, int y, pieceName name, QString icon) : name_(name),
-																		       x_(x),
-																			   y_(y),
+																			   positionPiece_(x,y),
 																			   colour_(colour),	
 																			   icon_(icon) {}
 
 
 void Piece::setPos(int newX, int newY)
 {
-	x_ = newX;
-	y_ = newY;
+	positionPiece_.x = newX;
+	positionPiece_.y = newY;
 }
 
 Pawn::Pawn(pieceColour colour, int x, int y, pieceName name, QString icon)
@@ -84,3 +83,7 @@ void Knight::behaviour() const
 {
 }
 
+Position Piece::getPositionPiece() const
+{
+	return positionPiece_;
+}

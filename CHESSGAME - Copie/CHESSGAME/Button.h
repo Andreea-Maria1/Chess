@@ -13,12 +13,7 @@
 #include <Qsize>
 #include <memory>
 #include "Piece.h"
-
-struct Position
-{
-    int x, y;
-    Position(int x = 0, int y = 0) : x(x), y(y) {};
-};
+#include "Position.h"
 
 class Button : public QPushButton {
     Q_OBJECT
