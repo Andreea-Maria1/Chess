@@ -12,9 +12,6 @@
 #include "Piece.h"
 #include "ChessBoard.h"
 
-using namespace png;
-using namespace pieceName;
-
 class RAII {
 public:
 	RAII(std::shared_ptr<ChessBoard> board);
