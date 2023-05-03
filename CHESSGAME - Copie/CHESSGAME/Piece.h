@@ -63,10 +63,7 @@ public:
 	bool validMove() { return movement_(positionPiece_.x, positionPiece_.y); };
 	//void affichage(); // affiche les pieces
 	Position getPositionPiece() const;
-
 	QString getIcon() { return icon_; };
-	//int getX() { return x_; };
-	//int getY() { return y_; };
 
 protected:
 	pieceName name_;
@@ -74,8 +71,6 @@ protected:
 	QString icon_;
 	std::function<bool(int x, int y)> movement_;
 	Position positionPiece_;
-	//int x_;
-	//int y_;
 };
 
 class Rook : public Piece {
