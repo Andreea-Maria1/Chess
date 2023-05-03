@@ -57,13 +57,15 @@ void ChessBoard::addPieces(std::shared_ptr<Piece> piece)
 		if (button->getPositionButton().x == piece->getPositionPiece().x && button->getPositionButton().y == piece->getPositionPiece().y)
 			{
 			button->setPiece(piece);
+			isPositionEmpty_ = false;
 			} 
 	}
 
 }
 
-void ChessBoard::removePieces(std::shared_ptr<Piece> piece)
+void ChessBoard::removePiece(std::shared_ptr<Piece> piece)
 {
+	// isPositionEmpty_ = true;
 }
 
 void ChessBoard::deleteSpacing() {
