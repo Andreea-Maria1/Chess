@@ -54,7 +54,7 @@ void ChessBoard::addPieces(std::shared_ptr<Piece> piece)
 	listOfPieces_.push_back(piece);
 	for (std::shared_ptr<Button> button : listOfButton_)
 	{
-		if (button->getPosition().x == piece->getX() && button->getPosition().y == piece->getY())
+		if (button->getPositionButton().x == piece->getX() && button->getPositionButton().y == piece->getY())
 			{
 			button->setPiece(piece);
 			} 
