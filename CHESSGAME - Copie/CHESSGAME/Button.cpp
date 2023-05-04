@@ -7,20 +7,31 @@
 */
 
 #include "Button.h"
+#include "ChessBoard.h"
 
 Button::Button(int x, int y, QWidget* parent) : positionButton_(x,y), QPushButton(parent)
 {
 	setIconSize(QSize(90, 90));
 	setFixedSize(100, 100);
-	connect(this, SIGNAL(clicked()), this, SLOT(handleClick()));
+	connect(this, SIGNAL(clicked()), this, SLOT(ChessBoard::handleButton(this, this->positionButton_)));
 }
 
-void Button::handleClick() {
-	
-}
+//void Button::handleClick() 
+//{
+//	// select piece you want to play
+//	if (this->getPiece() != nullptr)
+//	{
+//		this->
+//	}
+//	// select new position
+//	else
+//	{
+//
+//	}
+//}
 
 void Button::setPiece(std::shared_ptr<Piece> piece) {
-	pieceOfSquare_ = piece;
+	pieceOfButton_ = piece;
 	if (piece == nullptr) {
 		setIcon(QIcon());
 		return;
@@ -30,7 +41,7 @@ void Button::setPiece(std::shared_ptr<Piece> piece) {
 }
 
 std::shared_ptr<Piece> Button::getPiece() const {
-	return pieceOfSquare_;
+	return pieceOfButton_;
 }
 
 Position Button::getPositionButton() const

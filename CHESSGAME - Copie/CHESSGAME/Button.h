@@ -26,10 +26,7 @@ public:
     void setPiece(std::shared_ptr<Piece> piece);
     Position getPositionButton() const;
 
-public slots:
-    void handleClick();
-
 private:
-    std::shared_ptr<Piece> pieceOfSquare_ = nullptr;
+    std::shared_ptr<Piece> pieceOfButton_ = nullptr;
     Position positionButton_;
 };
