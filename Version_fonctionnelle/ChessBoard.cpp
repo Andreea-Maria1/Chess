@@ -124,7 +124,6 @@ std::vector<std::shared_ptr<Piece>> ChessBoard::getlistOfPieces() const
 	return listOfPieces_;
 }
 
-
 void ChessBoard::changeColourValidMove(Position newPosition)
 {
 	for (auto&& button : listOfButton_)
@@ -154,6 +153,5 @@ void ChessBoard::click(Button* button)
 	else
 	{
 		movePiece(button->getPositionButton(), clickedPiece_, button);
-
 	}
 }

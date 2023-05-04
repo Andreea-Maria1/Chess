@@ -34,7 +34,7 @@ public:
     std::vector<std::shared_ptr<Button>> getListOfButton() const;
     std::vector<std::shared_ptr<Piece>> getlistOfPieces() const;
 
-    bool isPositionEmpty;
+    bool isPositionEmpty = true;
 
 private:
     std::vector<std::shared_ptr<Button>> listOfButton_;
