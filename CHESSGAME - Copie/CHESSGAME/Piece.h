@@ -56,10 +56,12 @@ namespace png {
 class Piece {
 
 public:
-	virtual ~Piece() = default;
 	Piece(pieceColour colour, int x, int y, pieceName name, QString icon);
+	virtual ~Piece() = default;
+
 	virtual bool isValidMove(Position newPosition) const = 0;
 	void setPos(int newX, int newY);
+
 	//void affichage(); // affiche les pieces
 	Position getPositionPiece() const;
 	QString getIcon() { return icon_; };
@@ -68,7 +70,6 @@ protected:
 	pieceName name_;
 	pieceColour colour_;
 	QString icon_;
-	std::function<bool(int x, int y)> movement_;
 	Position positionPiece_;
 };
 

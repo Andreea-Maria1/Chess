@@ -16,6 +16,7 @@ class RAII {
 public:
 	RAII(std::shared_ptr<ChessBoard> board);
 	~RAII();
+
 private:
 	std::shared_ptr<ChessBoard> chessBoard_;
 	std::shared_ptr<Piece> piece_;

@@ -22,9 +22,10 @@ public:
 
     Button(int x, int y, QWidget* parent = nullptr);
     ~Button() = default;
+
+    Position getPositionButton() const;
     std::shared_ptr<Piece> getPiece() const;
     void setPiece(std::shared_ptr<Piece> piece);
-    Position getPositionButton() const;
 
 private:
     std::shared_ptr<Piece> pieceOfButton_ = nullptr;
