@@ -23,12 +23,12 @@ public:
     void initialisation();
     void addPieces(std::shared_ptr<Piece> piece);
     void removePiece(std::shared_ptr<Piece> piece);
-    void movePieces(int x, int y, int newX, int newY);
+    void movePieces(Position newPosition, std::shared_ptr<Piece> piece);
     void deleteSpacing();
     std::vector<std::shared_ptr<Button>> getListOfButton() const;
+    bool isPositionEmpty;
 
 private:
     std::vector<std::shared_ptr<Button>> listOfButton_;
     std::vector<std::shared_ptr<Piece>> listOfPieces_;
-    bool isPositionEmpty_;
 };
