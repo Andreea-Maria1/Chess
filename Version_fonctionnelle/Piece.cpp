@@ -40,11 +40,11 @@ bool Bishop::isValidMove(Position newPosition) const
 	if (movementManagement::isDiagonal(newPosition, positionPiece_) == true) return true;
 }
 
-King::King(pieceColour colour, int x, int y, pieceName name, QString icon)
-	: Piece(colour, x, y, name, icon)
+King::King(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon)
 {
 	count_ += 1;
-	if (count_ > 2) {
+	if (count_ > 2) 
+	{
 		QMessageBox msgBox;
 		msgBox.setText("More than two Kings added.");
 		msgBox.exec();

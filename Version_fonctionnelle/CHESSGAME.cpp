@@ -8,10 +8,8 @@
 
 #include "CHESSGAME.h"
 
-CHESSGAME::CHESSGAME(QWidget *parent)
-    : QMainWindow(parent)
+CHESSGAME::CHESSGAME(QWidget *parent) : QMainWindow(parent)
 {
     //ui.setupUi(this);
-
 }
 

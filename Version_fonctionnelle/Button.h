@@ -14,19 +14,22 @@
 #include <memory>
 #include "Piece.h"
 #include "Position.h"
+
 class ChessBoard;
-class Button : public QPushButton {
+
+class Button : public QPushButton 
+{
     Q_OBJECT
 
 public:
-
     Button(int x, int y, std::shared_ptr<ChessBoard> chessBoard, QWidget* parent = nullptr);
     ~Button() = default;
-    std::shared_ptr<Piece> getPiece() const;
-    void setPiece(std::shared_ptr<Piece> piece);
-    Position getPositionButton() const;
-    void setBaseColor(std::string colour);
+
     std::string getBaseColor() const;
+    std::shared_ptr<Piece> getPiece() const;
+    Position getPositionButton() const;
+    void setPiece(std::shared_ptr<Piece> piece);
+    void setBaseColor(std::string colour);
 
 public slots:
     void handleButton();

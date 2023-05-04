@@ -16,21 +16,25 @@
 #include "Piece.h"
 #include "Button.h"
 
-class ChessBoard : public QGridLayout {
+class ChessBoard : public QGridLayout 
+{
 public:
     ChessBoard(ChessBoard* chessBoard);
     ChessBoard(QWidget* parent = nullptr);
     ~ChessBoard() = default;
+
     void initialisation();
     void addPieces(std::shared_ptr<Piece> piece);
     void removePiece(Button* button);
     void movePiece(Position newPosition, std::shared_ptr<Piece> piece, Button* button);
     void deleteSpacing();
     void changeColourValidMove(Position newPosition);
+    void click(Button* button);
+
     std::vector<std::shared_ptr<Button>> getListOfButton() const;
     std::vector<std::shared_ptr<Piece>> getlistOfPieces() const;
+
     bool isPositionEmpty;
-    void click(Button* button);
 
 private:
     std::vector<std::shared_ptr<Button>> listOfButton_;

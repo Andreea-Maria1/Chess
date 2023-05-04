@@ -70,9 +70,11 @@ int main(int argc, char *argv[])
     piecesAdded.push_back(std::make_shared<Queen>(pieceColour::BLACK, 0, 3, pieceName::QUEEN, queenIconBlack));
  
 
-    for (auto& piece : piecesAdded) {
+    for (auto& piece : piecesAdded) 
+    {
 		chessBoard->addPieces(piece);
 	}
+
     {
         RAII raii(chessBoard);
     }

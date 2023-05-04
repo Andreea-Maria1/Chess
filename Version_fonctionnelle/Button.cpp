@@ -16,7 +16,6 @@ Button::Button(int x, int y, std::shared_ptr<ChessBoard> chessBoard, QWidget* pa
 	connect(this, SIGNAL(clicked()), this, SLOT(handleButton()));
 }
 
-
 void Button::setPiece(std::shared_ptr<Piece> piece)
 {
 	pieceOfButton_ = piece;

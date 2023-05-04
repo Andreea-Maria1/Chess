@@ -12,7 +12,8 @@
 #include "Piece.h"
 #include "ChessBoard.h"
 
-class RAII {
+class RAII 
+{
 public:
 	RAII(std::shared_ptr<ChessBoard> board);
 	~RAII();

@@ -122,9 +122,6 @@
     <ClCompile Include="RAII.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\imagesPieces\roiNoir.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,7 @@ ChessBoard::ChessBoard(QWidget* parent) : QGridLayout(parent)
 	initialisation();
 	deleteSpacing();
 }
+
 ChessBoard::ChessBoard(ChessBoard* chessBoard)
 {
 	listOfButton_ = chessBoard->getListOfButton();
@@ -50,7 +51,6 @@ void ChessBoard::initialisation()
 			}
 			addWidget(button.get(), i, j, 1, 1);
 		}
-
 	}
 }
 
@@ -81,7 +81,6 @@ void ChessBoard::movePiece(Position newPosition, std::shared_ptr<Piece> piece, B
 		piece->getPositionPiece();
 		button->setPiece(piece);
 		button->setIcon(QIcon(piece->getIcon()));
-
 	}
 	else
 	{
@@ -109,7 +108,8 @@ void ChessBoard::removePiece(Button* button)
 	button = nullptr;
 }
 
-void ChessBoard::deleteSpacing() {
+void ChessBoard::deleteSpacing() 
+{
 	setHorizontalSpacing(0);
 	setVerticalSpacing(0);
 }
@@ -136,7 +136,8 @@ void ChessBoard::changeColourValidMove(Position newPosition)
 	}
 }
 
-void ChessBoard::click(Button* button) {
+void ChessBoard::click(Button* button) 
+{
 	// select piece you want to play
 	if (clickedPiece_ == nullptr)
 	{

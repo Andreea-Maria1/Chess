@@ -54,11 +54,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\imagesPieces\roiNoir.png">
-      <Filter>Images</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
