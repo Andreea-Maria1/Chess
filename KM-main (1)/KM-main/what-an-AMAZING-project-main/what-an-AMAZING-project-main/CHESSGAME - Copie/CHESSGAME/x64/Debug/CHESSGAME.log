@@ -1,0 +1,6 @@
+﻿  ChessBoard.cpp
+D:\Downloads\KM-main (1)\KM-main\what-an-AMAZING-project-main\what-an-AMAZING-project-main\CHESSGAME - Copie\CHESSGAME\ChessBoard.cpp(1,1): warning C4828: Le fichier contient un caractère qui débute à l'offset 0x7f et qui est non conforme dans le jeu de caractères source actuel (page de codes 65001).
+D:\Downloads\KM-main (1)\KM-main\what-an-AMAZING-project-main\what-an-AMAZING-project-main\CHESSGAME - Copie\CHESSGAME\ChessBoard.h(1,1): warning C4828: Le fichier contient un caractère qui débute à l'offset 0x7d et qui est non conforme dans le jeu de caractères source actuel (page de codes 65001).
+D:\Downloads\KM-main (1)\KM-main\what-an-AMAZING-project-main\what-an-AMAZING-project-main\CHESSGAME - Copie\CHESSGAME\Piece.h(1,1): warning C4828: Le fichier contient un caractère qui débute à l'offset 0x78 et qui est non conforme dans le jeu de caractères source actuel (page de codes 65001).
+D:\Downloads\KM-main (1)\KM-main\what-an-AMAZING-project-main\what-an-AMAZING-project-main\CHESSGAME - Copie\CHESSGAME\Button.h(1,1): warning C4828: Le fichier contient un caractère qui débute à l'offset 0x79 et qui est non conforme dans le jeu de caractères source actuel (page de codes 65001).
+  CHESSGAME.vcxproj -> D:\Downloads\KM-main (1)\KM-main\what-an-AMAZING-project-main\what-an-AMAZING-project-main\CHESSGAME - Copie\x64\Debug\CHESSGAME.exe
