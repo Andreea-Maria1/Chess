@@ -22,11 +22,15 @@ public:
     ~ChessBoard() = default;
     void initialisation();
     void addPieces(std::shared_ptr<Piece> piece);
-    void removePiece(std::shared_ptr<Piece> piece);
-    void movePieces(Position newPosition, std::shared_ptr<Piece> piece);
+    void removePiece(std::shared_ptr<Piece> piece, Position newPosition);
+    void movePiece(Position newPosition, std::shared_ptr<Piece> piece);
     void deleteSpacing();
+    void changeColourValidMove(Position newPosition);
     std::vector<std::shared_ptr<Button>> getListOfButton() const;
     bool isPositionEmpty;
+
+public slots:
+    void handleButton(std::shared_ptr<Button> button, Position newPosition);
 
 private:
     std::vector<std::shared_ptr<Button>> listOfButton_;

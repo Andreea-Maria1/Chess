@@ -13,7 +13,6 @@ ChessBoard::ChessBoard(QWidget* parent) : QGridLayout(parent)
 	setSizeConstraint(QLayout::SetMinAndMaxSize);
 	initialisation();
 	deleteSpacing();
-
 }
 
 void ChessBoard::initialisation()
@@ -45,7 +44,7 @@ void ChessBoard::initialisation()
 	}
 }
 
-void ChessBoard::movePieces(Position newPosition, std::shared_ptr<Piece> piece)
+void ChessBoard::movePiece(Position newPosition, std::shared_ptr<Piece> piece)
 {
 	if (piece->isValidMove(newPosition) && isPositionEmpty) 
 	{
@@ -64,12 +63,15 @@ void ChessBoard::addPieces(std::shared_ptr<Piece> piece)
 			isPositionEmpty = false;
 			} 
 	}
-
 }
 
-void ChessBoard::removePiece(std::shared_ptr<Piece> piece)
+void ChessBoard::removePiece(std::shared_ptr<Piece> piece, Position newPosition)
 {
-	// isPositionEmpty = true;
+	//if (piece->isValidMove(newPosition) && !isPositionEmpty)
+	//{
+	//	piece->setPos(newPosition.x, newPosition.y);
+	//	isPositionEmpty = true;
+	//}
 }
 
 void ChessBoard::deleteSpacing() {
@@ -82,3 +84,27 @@ std::vector<std::shared_ptr<Button>> ChessBoard::getListOfButton() const
 	return listOfButton_;
 }
 
+void ChessBoard::changeColourValidMove(Position newPosition)
+{
+	for (auto&& button : listOfButton_) 
+	{
+		if (button.get()->getPiece()->isValidMove(newPosition)) 
+		{
+			button->setStyleSheet("background-color: rgba(255,255,153,1); margin: -10px;");
+		}
+	}
+}
+
+void ChessBoard::handleButton(std::shared_ptr<Button> button, Position newPosition)
+{
+	// select piece you want to play
+	if (button->getPiece() != nullptr)
+	{
+		changeColourValidMove(newPosition);
+	}
+	// select new position
+	else
+	{
+		movePiece(newPosition, button->getPiece());
+	}
+}
