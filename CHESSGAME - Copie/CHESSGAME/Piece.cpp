@@ -5,14 +5,13 @@
 * \date   20 avril 2023
 * Créé le 10 avril 2023
 */
-
 #include "Piece.h"
+#include "MovementManager.h"
 
 Piece::Piece(pieceColour colour, int x, int y, pieceName name, QString icon) : name_(name),
 																			   positionPiece_(x,y),
 																			   colour_(colour),	
 																			   icon_(icon) {}
-
 
 void Piece::setPos(int newX, int newY)
 {
@@ -20,31 +19,25 @@ void Piece::setPos(int newX, int newY)
 	positionPiece_.y = newY;
 }
 
-Pawn::Pawn(pieceColour colour, int x, int y, pieceName name, QString icon)
-	: Piece(colour, x, y, name, icon)
+Pawn::Pawn(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon) {}
+
+bool Pawn::isValidMove(Position newPosition) const
 {
+	return true;
 }
 
-void Pawn::behaviour() const
+Rook::Rook(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon) {}
+
+bool Rook::isValidMove(Position newPosition) const
 {
+	if (movementManagement::isCross(newPosition, positionPiece_) == true) return true;
 }
 
-Rook::Rook(pieceColour colour, int x, int y, pieceName name, QString icon)
-	: Piece(colour, x, y, name, icon)
-{
-}
+Bishop::Bishop(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon) {}
 
-void Rook::behaviour() const
+bool Bishop::isValidMove(Position newPosition) const
 {
-}
-
-Bishop::Bishop(pieceColour colour, int x, int y, pieceName name, QString icon)
-	: Piece(colour, x, y, name, icon)
-{
-}
-
-void Bishop::behaviour() const
-{
+	if (movementManagement::isDiagonal(newPosition, positionPiece_) == true) return true;
 }
 
 King::King(pieceColour colour, int x, int y, pieceName name, QString icon)
@@ -61,26 +54,23 @@ King::King(pieceColour colour, int x, int y, pieceName name, QString icon)
 
 int King::count_ = 0;
 
-void King::behaviour() const
+bool King::isValidMove(Position newPosition) const
 {
+	if (movementManagement::isNeighbour(newPosition, positionPiece_) == true) return true;
 }
 
-Queen::Queen(pieceColour colour, int x, int y, pieceName name, QString icon)
-	: Piece(colour, x, y, name, icon)
+Queen::Queen(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon) {}
+
+bool Queen::isValidMove(Position newPosition) const
 {
+	return true;
 }
 
-void Queen::behaviour() const
-{
-}
+Knight::Knight(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon) {}
 
-Knight::Knight(pieceColour colour, int x, int y, pieceName name, QString icon)
-	: Piece(colour, x, y, name, icon)
+bool Knight::isValidMove(Position newPosition) const
 {
-}
-
-void Knight::behaviour() const
-{
+	return true;
 }
 
 Position Piece::getPositionPiece() const

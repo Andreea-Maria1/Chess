@@ -58,9 +58,8 @@ class Piece {
 public:
 	virtual ~Piece() = default;
 	Piece(pieceColour colour, int x, int y, pieceName name, QString icon);
-	virtual void behaviour() const = 0;
+	virtual bool isValidMove(Position newPosition) const = 0;
 	void setPos(int newX, int newY);
-	bool validMove() { return movement_(positionPiece_.x, positionPiece_.y); };
 	//void affichage(); // affiche les pieces
 	Position getPositionPiece() const;
 	QString getIcon() { return icon_; };
@@ -77,21 +76,22 @@ class Rook : public Piece {
 public:
 	Rook() = default;
 	Rook(pieceColour colour, int x, int y, pieceName name, QString icon);
-	void behaviour() const override;
+	bool isValidMove(Position newPosition) const override;
 };
 
 class Bishop : public Piece {
 public:
 	Bishop() = default;
 	Bishop(pieceColour colour, int x, int y, pieceName name, QString icon);
-	void behaviour() const override;
+	bool isValidMove(Position newPosition) const override;
 };
 
 class King : public Piece {
 public:
 	King() = default;
 	King(pieceColour colour, int x, int y, pieceName name, QString icon);
-	void behaviour() const override;
+	bool isValidMove(Position newPosition) const override;
+
 private:
 	static int count_;
 };
@@ -100,19 +100,19 @@ class Pawn : public Piece {
 public:
 	Pawn() = default;
 	Pawn(pieceColour colour, int x, int y, pieceName name, QString icon);
-	void behaviour() const override;
+	bool isValidMove(Position newPosition) const override;
 };
 
 class Queen : public Piece {
 public:
 	Queen() = default;
 	Queen(pieceColour colour, int x, int y, pieceName name, QString icon);
-	void behaviour() const override;
+	bool isValidMove(Position newPosition) const override;
 };
 
 class Knight : public Piece {
 public:
 	Knight() = default;
 	Knight(pieceColour colour, int x, int y, pieceName, QString icon);
-	void behaviour() const override;
+	bool isValidMove(Position newPosition) const override;
 };
