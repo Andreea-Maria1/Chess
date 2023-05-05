@@ -10,7 +10,6 @@ namespace movementManagement {
 
 	static inline bool isVertical(Position lastPosition, Position newPosition) 
 	{
-
 		return (lastPosition.x == newPosition.x && lastPosition.y != newPosition.y);
 	}
 

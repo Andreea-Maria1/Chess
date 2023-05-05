@@ -107,7 +107,6 @@ bool ChessBoard::isSomethingInWay(Position initialPosition, Position finalPositi
 				return true;
 			}
 		}
-
 	}
 	else if (movementManagement::isHorizontal(initialPosition, finalPosition))
 	{
@@ -119,7 +118,6 @@ bool ChessBoard::isSomethingInWay(Position initialPosition, Position finalPositi
 		for (int x = leftPosition.x + 1; x < rightPosition.x; x++)
 		{
 			auto currentButton = getButton({x, y});
-
 			if (currentButton->getPiece() != nullptr) 
 			{
 				return true;
@@ -142,6 +140,8 @@ bool ChessBoard::isSomethingInWay(Position initialPosition, Position finalPositi
 			{
 				return true;
 			}
+			x += xIncrement;
+			y += yIncrement;
 		}
 	}
 	return false;
@@ -151,16 +151,17 @@ bool ChessBoard::isMovePossible(Button* initialButton, Button* finalButton)
 {
 	std::shared_ptr<Piece> piece = initialButton->getPiece();
 	std::shared_ptr<Piece> meal = finalButton->getPiece();
+	Position initialPosition = initialButton->getPositionButton();
 	Position newPosition = finalButton->getPositionButton();
 
 	if (meal != nullptr && isSameColour(piece.get(), meal.get()))
 	{
 		return false;
 	}
-	// else if (isSomethingInWay(piece->getPositionPiece(), meal->getPositionPiece()))
-	// {
-	//  	return false;
-	// }
+	else if (isSomethingInWay(initialPosition, newPosition))
+	{
+	 	return false;
+	}
 	else if (!piece->isValidMove(newPosition)) 
 	{
 		return false;
