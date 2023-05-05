@@ -15,6 +15,7 @@ namespace movementManagement {
 
 	static inline bool isNeighbour(Position lastPosition, Position newPosition)
 	{
-		return (abs(newPosition.x - lastPosition.x) == 1) || (abs(newPosition.y - lastPosition.y) == 1);
+		return (abs(newPosition.x - lastPosition.x) <= 1) && (abs(newPosition.y - lastPosition.y) <= 1)
+			&& !(newPosition.x == lastPosition.x && newPosition.y == lastPosition.y);
 	}
 }

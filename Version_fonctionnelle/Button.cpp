@@ -37,12 +37,24 @@ Position Button::getPositionButton() const
 	return positionButton_;
 }
 
+void Button::resetColour()
+{
+	if (baseColour_ == "blue")
+	{
+		setStyleSheet("background-color: rgba(100,156,189,1); margin: -10px;");
+	}
+	else
+	{
+		setStyleSheet("background-color: rgba(255, 250, 240, 1); margin: -10px;");
+	}
+}
+
 void Button::handleButton()
 {
 	chessBoard_->click(this);
 }
 
-void Button::setBaseColor(std::string colour)
+void Button::setBaseColour(std::string colour)
 {
 	baseColour_ = colour;
 }

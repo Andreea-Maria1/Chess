@@ -29,12 +29,17 @@ public:
     void movePiece(Position newPosition, std::shared_ptr<Piece> piece, Button* button);
     void deleteSpacing();
     void changeColourValidMove(Position newPosition);
+    void resetColoursBoard();
     void click(Button* button);
 
     std::vector<std::shared_ptr<Button>> getListOfButton() const;
     std::vector<std::shared_ptr<Piece>> getlistOfPieces() const;
 
     bool isPositionEmpty = true;
+    
+    void AFFICHER() {
+        std::cout << listOfButton_.size() << std::endl;
+    }
 
 private:
     std::vector<std::shared_ptr<Button>> listOfButton_;

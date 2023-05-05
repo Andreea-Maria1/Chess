@@ -30,14 +30,14 @@ Rook::Rook(pieceColour colour, int x, int y, pieceName name, QString icon) : Pie
 
 bool Rook::isValidMove(Position newPosition) const
 {
-	if (movementManagement::isCross(newPosition, positionPiece_) == true) return true;
+	return movementManagement::isCross(newPosition, positionPiece_);
 }
 
 Bishop::Bishop(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon) {}
 
 bool Bishop::isValidMove(Position newPosition) const
 {
-	if (movementManagement::isDiagonal(newPosition, positionPiece_) == true) return true;
+	return movementManagement::isDiagonal(newPosition, positionPiece_);
 }
 
 King::King(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon)
@@ -56,7 +56,7 @@ int King::count_ = 0;
 
 bool King::isValidMove(Position newPosition) const
 {
-	if (movementManagement::isNeighbour(newPosition, positionPiece_) == true) return true;
+	return movementManagement::isNeighbour(newPosition, positionPiece_);
 }
 
 Queen::Queen(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon) {}

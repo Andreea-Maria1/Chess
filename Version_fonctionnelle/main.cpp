@@ -68,7 +68,6 @@ int main(int argc, char *argv[])
 
     piecesAdded.push_back(std::make_shared<Queen>(pieceColour::WHITE, 7, 3, pieceName::QUEEN, queenIconWhite));
     piecesAdded.push_back(std::make_shared<Queen>(pieceColour::BLACK, 0, 3, pieceName::QUEEN, queenIconBlack));
- 
 
     for (auto& piece : piecesAdded) 
     {

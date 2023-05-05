@@ -29,7 +29,9 @@ public:
     std::shared_ptr<Piece> getPiece() const;
     Position getPositionButton() const;
     void setPiece(std::shared_ptr<Piece> piece);
-    void setBaseColor(std::string colour);
+    void setBaseColour(std::string colour);
+
+    void resetColour();
 
 public slots:
     void handleButton();
@@ -39,4 +41,5 @@ private:
     Position positionButton_;
     std::shared_ptr<ChessBoard> chessBoard_;
     std::string baseColour_;
+
 };
