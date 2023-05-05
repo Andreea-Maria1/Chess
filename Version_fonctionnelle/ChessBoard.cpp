@@ -73,7 +73,7 @@ void ChessBoard::addPieces(std::shared_ptr<Piece> piece)
 void ChessBoard::movePiece(Position newPosition, std::shared_ptr<Piece> piece, Button* button)
 {
 
-	if (piece->isValidMove(newPosition) /*&& isPositionEmpty*/)
+	if (piece->isValidMove(newPosition) && isPositionEmpty || piece->isValidMove(newPosition) && !isPositionEmpty)
 	{
 		piece->getPositionPiece();
 		button->setPiece(piece);
@@ -86,10 +86,10 @@ void ChessBoard::movePiece(Position newPosition, std::shared_ptr<Piece> piece, B
 	//	button->setPiece(piece);
 	//	button->setIcon(QIcon(piece->getIcon()));
 	//}
-	//else
-	//{
-	//	clickedPiece_ = nullptr;
-	//}
+	else
+	{
+		clickedPiece_ = nullptr;
+	}
 
 	button->setPiece(clickedPiece_);
 	button->setIcon(QIcon(clickedPiece_->getIcon()));
@@ -141,8 +141,6 @@ void ChessBoard::resetColoursBoard()
 
 void ChessBoard::click(Button* button) 
 {
-	std::cout << listOfButton_.size() << std::endl;
-
 	// select piece you want to play
 	if (clickedPiece_ == nullptr && button->getPiece() != nullptr)
 	{

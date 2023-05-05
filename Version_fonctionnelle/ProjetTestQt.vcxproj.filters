@@ -17,22 +17,22 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
-    <Filter Include="Sources Bibliotheques">
-      <UniqueIdentifier>{68ace6f3-7624-4063-b7e8-0b2c755fbfc8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Images">
       <UniqueIdentifier>{519632c0-c43a-42bb-ab6d-a9c433379821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources Bibliothèques">
+      <UniqueIdentifier>{68ace6f3-7624-4063-b7e8-0b2c755fbfc8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bibliotheque_cours\bibliotheque_cours.cpp">
-      <Filter>Sources Bibliotheques</Filter>
+      <Filter>Sources Bibliothèques</Filter>
     </ClCompile>
     <ClCompile Include="bibliotheque_cours\verification_allocation.cpp">
-      <Filter>Sources Bibliotheques</Filter>
+      <Filter>Sources Bibliothèques</Filter>
     </ClCompile>
     <ClCompile Include="googletest\src\gtest-all.cc">
-      <Filter>Sources Bibliotheques</Filter>
+      <Filter>Sources Bibliothèques</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>

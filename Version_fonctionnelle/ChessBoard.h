@@ -36,10 +36,6 @@ public:
     std::vector<std::shared_ptr<Piece>> getlistOfPieces() const;
 
     bool isPositionEmpty = true;
-    
-    void AFFICHER() {
-        std::cout << listOfButton_.size() << std::endl;
-    }
 
 private:
     std::vector<std::shared_ptr<Button>> listOfButton_;
