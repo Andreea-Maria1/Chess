@@ -37,7 +37,7 @@ public slots:
     void handleButton();
 
 private:
-    std::shared_ptr<Piece> pieceOfButton_ = nullptr;
+    std::shared_ptr<Piece> pieceOnButton_ = nullptr;
     Position positionButton_;
     std::shared_ptr<ChessBoard> chessBoard_;
     std::string baseColour_;

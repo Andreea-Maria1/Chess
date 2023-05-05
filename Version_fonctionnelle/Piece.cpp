@@ -19,6 +19,11 @@ void Piece::setPos(int newX, int newY)
 	positionPiece_.y = newY;
 }
 
+bool Piece::isWhite() const
+{
+	return colour_ == pieceColour::WHITE;
+}
+
 Pawn::Pawn(pieceColour colour, int x, int y, pieceName name, QString icon) : Piece(colour, x, y, name, icon) {}
 
 bool Pawn::isValidMove(Position newPosition) const

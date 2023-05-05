@@ -18,8 +18,9 @@ Button::Button(int x, int y, std::shared_ptr<ChessBoard> chessBoard, QWidget* pa
 
 void Button::setPiece(std::shared_ptr<Piece> piece)
 {
-	pieceOfButton_ = piece;
-	if (piece == nullptr) {
+	pieceOnButton_ = piece;
+	if (pieceOnButton_ == nullptr) 
+	{
 		setIcon(QIcon());
 		return;
 	}
@@ -29,7 +30,7 @@ void Button::setPiece(std::shared_ptr<Piece> piece)
 
 std::shared_ptr<Piece> Button::getPiece() const
 {
-	return pieceOfButton_;
+	return pieceOnButton_;
 }
 
 Position Button::getPositionButton() const

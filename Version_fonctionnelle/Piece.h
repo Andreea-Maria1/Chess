@@ -62,6 +62,7 @@ public:
 
 	Position getPositionPiece() const;
 	QString getIcon() { return icon_; };
+	bool isWhite() const;
 
 protected:
 	pieceName name_;
@@ -102,7 +103,7 @@ class Pawn : public Piece
 public:
 	Pawn() = default;
 	Pawn(pieceColour colour, int x, int y, pieceName name, QString icon);
-	bool isValidMove(Position newPosition) const override;
+	bool isValidMove (Position newPosition) const override;
 };
 
 class Queen : public Piece 
