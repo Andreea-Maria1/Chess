@@ -125,7 +125,7 @@ bool ChessBoard::isSomethingInWay(Position initialPosition, Position finalPositi
 		}
 
 	}
-	else // diagonal
+	else
 	{
 		int xIncrement = (finalPosition.x > initialPosition.x) ? 1 : -1;
 		int yIncrement = (finalPosition.y > initialPosition.y) ? 1 : -1; 
@@ -189,7 +189,6 @@ void ChessBoard::removePiece(Button* button)
 	button->setIcon(QIcon(""));
 	button->resetColour();
 	button->setPiece(nullptr);
-	//button = nullptr;
 	isPositionEmpty = true;
 }
 
@@ -241,8 +240,6 @@ void ChessBoard::click(Button* button)
 	bool isFirstClick = lastClickedButton_ == nullptr;
 
 	if (isFirstClick) {
-		std::cout << "First click" << std::endl;
-
 		if (button->getPiece() == nullptr) 
 		{
 			return;
@@ -253,15 +250,12 @@ void ChessBoard::click(Button* button)
 		}
 		else 
 		{
-			// clic sur une piece du bon joueur
 			lastClickedButton_ = button;
 			lastClickedButton_->setStyleSheet("background-color: rgba(156,152,152,1); margin: -10px;");
 			changeColourValidMove(lastClickedButton_->getPositionButton());
 		}
 	}
-	else { // second click
-		std::cout << "Second click" << std::endl;
-	
+	else {
 		bool moveSuccessful = movePiece(lastClickedButton_, button);
 
 		if (moveSuccessful) 
@@ -270,10 +264,8 @@ void ChessBoard::click(Button* button)
 		}
 		else 
 		{
-			// light new button in red
 			button->setStyleSheet("background-color: rgba(230,67,67,1); margin: -10px;");
 		}
-
 		lastClickedButton_ = nullptr;
 	}
 }
