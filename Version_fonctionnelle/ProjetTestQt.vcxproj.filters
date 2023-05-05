@@ -57,17 +57,17 @@
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="Button.h">
+    <QtMoc Include="CHESSGAME.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="CHESSGAME.h">
+    <QtMoc Include="ChessBoard.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Button.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ChessBoard.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Piece.h">
       <Filter>Header Files</Filter>
     </ClInclude>

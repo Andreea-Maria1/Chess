@@ -20,9 +20,8 @@ class ChessBoard;
 class Button : public QPushButton 
 {
     Q_OBJECT
-
 public:
-    Button(int x, int y, std::shared_ptr<ChessBoard> chessBoard, QWidget* parent = nullptr);
+    Button(int x, int y, QWidget* parent = nullptr);
     ~Button() = default;
 
     std::string getBaseColor() const;
@@ -33,13 +32,9 @@ public:
 
     void resetColour();
 
-public slots:
-    void handleButton();
-
 private:
     std::shared_ptr<Piece> pieceOnButton_ = nullptr;
     Position positionButton_;
-    std::shared_ptr<ChessBoard> chessBoard_;
     std::string baseColour_;
 
 };

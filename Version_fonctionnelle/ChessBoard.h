@@ -11,13 +11,20 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QtWidgets/QMainWindow>
+#include <QString>
+#include <Qsize>
 #include <vector>
 #include <memory>
 #include "Piece.h"
 #include "Button.h"
+#include "MovementManager.h"
+
+#include <iostream>
 
 class ChessBoard : public QGridLayout 
 {
+    Q_OBJECT 
+
 public:
     ChessBoard(ChessBoard* chessBoard);
     ChessBoard(QWidget* parent = nullptr);
@@ -29,19 +36,27 @@ public:
     void deleteSpacing();
     void changeColourValidMove(Position newPosition);
     void resetColoursBoard();
-    void click(Button* button);
 
     bool movePiece(Button* initialButton, Button* finalButton);
     bool isMovePossible(Button* initialButton, Button* finalButton);
 
+    bool putsKingInDanger(Button* initialButton, Button* finalButton);
     bool isSameColour(Piece* p1, Piece* p2) const;
     bool isSomethingInWay(Position initialPosition, Position finalPosition) const;
     
     Button* getButton(Position position) const;
+    Button* getButton(Position position, std::vector<std::shared_ptr<Button>> listOfButton) const;
+    Button* getKingButton(bool white) const;
+
+    void setButtonRed(Button* button) const;
+    void setButtonGrey(Button* button) const;
+    void setButtonGreen(Button* button) const;
+
     std::vector<std::shared_ptr<Button>> getListOfButton() const;
     std::vector<std::shared_ptr<Piece>> getlistOfPieces() const;
 
-    bool isPositionEmpty = true;
+public slots:
+    void click(Button* button);
 
 private:
     std::vector<std::shared_ptr<Button>> listOfButton_;

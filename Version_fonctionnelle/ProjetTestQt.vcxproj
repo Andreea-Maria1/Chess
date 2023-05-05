@@ -128,7 +128,7 @@
     <QtMoc Include="Button.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ChessBoard.h" />
+    <QtMoc Include="ChessBoard.h" />
     <ClInclude Include="MovementManager.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Position.h" />

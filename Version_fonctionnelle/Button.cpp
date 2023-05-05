@@ -7,13 +7,11 @@
 */
 
 #include "Button.h"
-#include "ChessBoard.h"
 
-Button::Button(int x, int y, std::shared_ptr<ChessBoard> chessBoard, QWidget* parent) : positionButton_(x, y), chessBoard_(chessBoard), QPushButton(parent)
+Button::Button(int x, int y, QWidget* parent) : positionButton_(x, y), QPushButton(parent)
 {
 	setIconSize(QSize(90, 90));
 	setFixedSize(100, 100);
-	connect(this, SIGNAL(clicked()), this, SLOT(handleButton()));
 }
 
 void Button::setPiece(std::shared_ptr<Piece> piece)
@@ -48,11 +46,6 @@ void Button::resetColour()
 	{
 		setStyleSheet("background-color: rgba(255, 250, 240, 1); margin: -10px;");
 	}
-}
-
-void Button::handleButton()
-{
-	chessBoard_->click(this);
 }
 
 void Button::setBaseColour(std::string colour)

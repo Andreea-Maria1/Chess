@@ -7,9 +7,6 @@
 */
 
 #include "ChessBoard.h"
-#include "MovementManager.h"
-#include <QString>
-#include <iostream>
 
 ChessBoard::ChessBoard(QWidget* parent) : QGridLayout(parent)
 {
@@ -31,7 +28,7 @@ void ChessBoard::initialisation()
 	{
 		for (int j = 0; j < 8; j++)
 		{
-			std::shared_ptr<Button> button = std::make_shared<Button>(i, j, chessBoard);
+			std::shared_ptr<Button> button = std::make_shared<Button>(i, j);
 			button->setStyleSheet("background-color: rgba(100,156,189,1); margin: -10px;");
 			button->setBaseColour("blue");
 
@@ -54,6 +51,7 @@ void ChessBoard::initialisation()
 				}
 			}
 			addWidget(button.get(), i, j, 1, 1);
+			connect(button.get(), &QPushButton::clicked, this, [this, button]() {this->click(button.get()); });
 		}
 	}
 	chessBoard->listOfButton_ = listOfButton_;
@@ -67,7 +65,6 @@ void ChessBoard::addPieces(std::shared_ptr<Piece> piece)
 		if (button->getPositionButton() == piece->getPositionPiece())
 		{
 			button->setPiece(piece);
-			isPositionEmpty = false;
 		}
 	}
 }
@@ -79,7 +76,12 @@ bool ChessBoard::isSameColour(Piece* p1, Piece* p2) const
 
 Button* ChessBoard::getButton(Position position) const
 {
-	for (auto&& button : listOfButton_)
+	return getButton(position, listOfButton_);
+}
+
+Button* ChessBoard::getButton(Position position, std::vector<std::shared_ptr<Button>> listOfButton) const
+{
+	for (auto&& button : listOfButton)
 	{
 		if (button->getPositionButton() == position)
 		{
@@ -147,6 +149,60 @@ bool ChessBoard::isSomethingInWay(Position initialPosition, Position finalPositi
 	return false;
 }
 
+Button* ChessBoard::getKingButton(bool searchWhite) const
+{
+
+	for (auto&& button : listOfButton_) 
+	{
+		std::shared_ptr<Piece> buttonPiece = button->getPiece();
+
+		if (buttonPiece && dynamic_cast<King*>(buttonPiece.get()) && buttonPiece->isWhite() == searchWhite)
+		{
+			return button.get();
+		}
+	}
+	return nullptr;
+}
+
+bool ChessBoard::putsKingInDanger(Button* initialButton, Button* finalButton)
+{
+	std::shared_ptr<Piece> piece = initialButton->getPiece();
+
+	auto meal = finalButton->getPiece();
+	finalButton->setPiece(initialButton->getPiece());
+	removePiece(initialButton);
+
+	auto kingButton = getKingButton(piece->isWhite());
+
+	bool isCheck = false;
+
+	for (auto&& button : listOfButton_) 
+	{
+		if (button->getPiece() == nullptr || isSameColour(button->getPiece().get(), kingButton->getPiece().get()))
+		{
+			continue;
+		}
+
+		else if (isMovePossible(button.get(), kingButton))
+		{
+			isCheck = true;
+		}
+	}
+
+	initialButton->setPiece(finalButton->getPiece());
+
+	if (meal) 
+	{
+		finalButton->setPiece(meal);
+	}
+	else
+	{
+		removePiece(finalButton);
+	}
+
+	return isCheck;
+}
+
 bool ChessBoard::isMovePossible(Button* initialButton, Button* finalButton) 
 {
 	std::shared_ptr<Piece> piece = initialButton->getPiece();
@@ -154,27 +210,18 @@ bool ChessBoard::isMovePossible(Button* initialButton, Button* finalButton)
 	Position initialPosition = initialButton->getPositionButton();
 	Position newPosition = finalButton->getPositionButton();
 
-	if (meal != nullptr && isSameColour(piece.get(), meal.get()))
-	{
-		return false;
-	}
-	else if (isSomethingInWay(initialPosition, newPosition))
-	{
-	 	return false;
-	}
-	else if (!piece->isValidMove(newPosition)) 
-	{
-		return false;
-	}
-	
-	return true;
+	bool isEatingTeammate = meal != nullptr && isSameColour(piece.get(), meal.get());
+
+	return 	!isEatingTeammate && 
+			!isSomethingInWay(initialPosition, newPosition) &&
+			piece->isValidMove(newPosition);
 }
 
 bool ChessBoard::movePiece(Button* initialButton, Button* finalButton)
 {
 	std::shared_ptr<Piece> piece = initialButton->getPiece();
 
-	if (piece != nullptr && isMovePossible(initialButton, finalButton))
+	if (piece != nullptr && isMovePossible(initialButton, finalButton) && !putsKingInDanger(initialButton, finalButton))
 	{
 		finalButton->setIcon(QIcon(piece->getIcon()));
 		finalButton->setPiece(piece);
@@ -189,7 +236,6 @@ void ChessBoard::removePiece(Button* button)
 	button->setIcon(QIcon(""));
 	button->resetColour();
 	button->setPiece(nullptr);
-	isPositionEmpty = true;
 }
 
 void ChessBoard::deleteSpacing() 
@@ -211,18 +257,18 @@ std::vector<std::shared_ptr<Piece>> ChessBoard::getlistOfPieces() const
 void ChessBoard::changeColourValidMove(Position newPosition)
 {
 	auto piece = lastClickedButton_->getPiece();
-	auto initialButton = getButton(piece->getPositionPiece());
 
 	for (auto&& button : listOfButton_)
 	{	
 		if (button->getPositionButton() == newPosition) {
 			continue;
 		}
-		else if (isMovePossible(initialButton, button.get()))
+		else if (isMovePossible(lastClickedButton_, button.get()) && !putsKingInDanger(lastClickedButton_, button.get()))
 		{
-			button->setStyleSheet("background-color: rgba(165,250,85,1); margin: -10px;");
+			setButtonGreen(button.get());
 		}
 	}
+	setButtonGrey(lastClickedButton_);
 }
 
 void ChessBoard::resetColoursBoard()
@@ -231,31 +277,52 @@ void ChessBoard::resetColoursBoard()
 		button->resetColour();
 }
 
+void ChessBoard::setButtonRed(Button* button) const
+{
+	button->setStyleSheet("background-color: rgba(230,67,67,1); margin: -10px;");
+}
+
+void ChessBoard::setButtonGrey(Button* button) const
+{
+	lastClickedButton_->setStyleSheet("background-color: rgba(156,152,152,1); margin: -10px;");
+}
+
+void ChessBoard::setButtonGreen(Button* button) const
+{
+	button->setStyleSheet("background-color: rgba(165,250,85,1); margin: -10px;");
+}
+
 void ChessBoard::click(Button* button) 
 {
 	resetColoursBoard();
 
-	std::cout << "Click" << std::endl;
-
 	bool isFirstClick = lastClickedButton_ == nullptr;
 
 	if (isFirstClick) {
-		if (button->getPiece() == nullptr) 
-		{
-			return;
-		}
-		else if (button->getPiece()->isWhite() != isWhiteTurn_) 
+		if (button->getPiece() == nullptr || button->getPiece()->isWhite() != isWhiteTurn_) 
 		{
 			return;
 		}
 		else 
 		{
 			lastClickedButton_ = button;
-			lastClickedButton_->setStyleSheet("background-color: rgba(156,152,152,1); margin: -10px;");
 			changeColourValidMove(lastClickedButton_->getPositionButton());
 		}
 	}
 	else {
+
+		if (button->getPiece() && isSameColour(button->getPiece().get(), lastClickedButton_->getPiece().get())) 
+		{
+			lastClickedButton_ = button;
+			changeColourValidMove(lastClickedButton_->getPositionButton());
+			return;
+		}
+
+		if (lastClickedButton_->getPositionButton() == button->getPositionButton())
+		{
+			return;
+		}
+
 		bool moveSuccessful = movePiece(lastClickedButton_, button);
 
 		if (moveSuccessful) 
@@ -264,8 +331,9 @@ void ChessBoard::click(Button* button)
 		}
 		else 
 		{
-			button->setStyleSheet("background-color: rgba(230,67,67,1); margin: -10px;");
+			setButtonRed(button);
 		}
+
 		lastClickedButton_ = nullptr;
 	}
 }
