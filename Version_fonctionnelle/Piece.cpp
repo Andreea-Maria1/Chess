@@ -57,6 +57,12 @@ King::King(pieceColour colour, int x, int y, pieceName name, QString icon) : Pie
 	}
 }
 
+King::~King()
+{
+	std::cout << "King destroyed" << std::endl;
+	count_ -= 1;
+}
+
 int King::count_ = 0;
 
 bool King::isValidMove(Position newPosition) const

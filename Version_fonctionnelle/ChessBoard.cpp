@@ -8,58 +8,51 @@
 
 #include "ChessBoard.h"
 
-ChessBoard::ChessBoard(QWidget* parent) : QGridLayout(parent)
+ChessBoard::ChessBoard(QWidget* parent) : QMainWindow(parent)
 {
-	setSizeConstraint(QLayout::SetMinAndMaxSize);
+	ui = std::make_unique<Ui::CHESSGAMEClass>();
+	ui->setupUi(this);
 	initialisation();
-	deleteSpacing();
-}
-
-ChessBoard::ChessBoard(ChessBoard* chessBoard)
-{
-	listOfButton_ = chessBoard->getListOfButton();
-	listOfPieces_ = chessBoard->getlistOfPieces();
 }
 
 void ChessBoard::initialisation()
 {
-	std::shared_ptr<ChessBoard> chessBoard = std::make_shared<ChessBoard>(this);
+	// this->resize(1200, 900);
+	
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 8; j++)
 		{
 			std::shared_ptr<Button> button = std::make_shared<Button>(i, j);
-			button->setStyleSheet("background-color: rgba(100,156,189,1); margin: -10px;");
+			button->setStyleSheet("background-color: rgba(100,156,189,1);");
 			button->setBaseColour("blue");
 
 			listOfButton_.push_back(button);
 
-			if (i % 2 == 0)
+			button->resize(100, 100);
+
+			if ((i % 2 == 0 && j % 2 == 0) || ((i % 2 != 0) && (j % 2 != 0)))
 			{
-				if (j % 2 == 0)
-				{
-					button->setStyleSheet("background-color: rgba(255,250,240,1); margin: -10px;");
-					button->setBaseColour("white;");
-				}
+				button->setStyleSheet("background-color: rgba(255,250,240,1);");
+				button->setBaseColour("white;");
 			}
-			else
-			{
-				if (j % 2 != 0)
-				{
-					button->setStyleSheet("background-color: rgba(255,250,240,1); margin: -10px;");
-					button->setBaseColour("white;");
-				}
-			}
-			addWidget(button.get(), i, j, 1, 1);
+			ui->gridLayout->addWidget(button.get(), i, j, 1, 1);
 			connect(button.get(), &QPushButton::clicked, this, [this, button]() {this->click(button.get()); });
 		}
 	}
-	chessBoard->listOfButton_ = listOfButton_;
+	ui->gridLayout->setHorizontalSpacing(0);
+	ui->gridLayout->setVerticalSpacing(0);
+	// change the size of the grid layout
+	
+	// ui->verticalLayout->setGeometry(QRect(0, 0, 2000, 2000));
+	// ui->gridLayout->setGeometry(QRect(300, 0, 2000, 2000));
+	// ui->gridLayout->setSizeConstraint(QLayout::SetMaximumSize);
+
+	connect(ui->confirmSelection, &QPushButton::clicked, this, &ChessBoard::startGame);
 }
 
 void ChessBoard::addPieces(std::shared_ptr<Piece> piece)
 {
-	listOfPieces_.push_back(piece);
 	for (std::shared_ptr<Button> button : listOfButton_)
 	{
 		if (button->getPositionButton() == piece->getPositionPiece())
@@ -125,7 +118,6 @@ bool ChessBoard::isSomethingInWay(Position initialPosition, Position finalPositi
 				return true;
 			}
 		}
-
 	}
 	else
 	{
@@ -238,21 +230,11 @@ void ChessBoard::removePiece(Button* button)
 	button->setPiece(nullptr);
 }
 
-void ChessBoard::deleteSpacing() 
-{
-	setHorizontalSpacing(0);
-	setVerticalSpacing(0);
-}
-
 std::vector<std::shared_ptr<Button>> ChessBoard::getListOfButton() const
 {
 	return listOfButton_;
 }
 
-std::vector<std::shared_ptr<Piece>> ChessBoard::getlistOfPieces() const
-{
-	return listOfPieces_;
-}
 
 void ChessBoard::changeColourValidMove(Position newPosition)
 {
@@ -279,17 +261,17 @@ void ChessBoard::resetColoursBoard()
 
 void ChessBoard::setButtonRed(Button* button) const
 {
-	button->setStyleSheet("background-color: rgba(230,67,67,1); margin: -10px;");
+	button->setStyleSheet("background-color: rgba(230,67,67,1);");
 }
 
 void ChessBoard::setButtonGrey(Button* button) const
 {
-	lastClickedButton_->setStyleSheet("background-color: rgba(156,152,152,1); margin: -10px;");
+	lastClickedButton_->setStyleSheet("background-color: rgba(156,152,152,1);");
 }
 
 void ChessBoard::setButtonGreen(Button* button) const
 {
-	button->setStyleSheet("background-color: rgba(165,250,85,1); margin: -10px;");
+	button->setStyleSheet("background-color: rgba(165,250,85,1);");
 }
 
 void ChessBoard::click(Button* button) 
@@ -335,5 +317,39 @@ void ChessBoard::click(Button* button)
 		}
 
 		lastClickedButton_ = nullptr;
+	}
+}
+
+void ChessBoard::clearBoard() 
+{
+	for (auto&& button : listOfButton_)
+	{
+		removePiece(button.get());
+	}
+}
+
+void ChessBoard::startGame()
+{
+	clearBoard();
+
+	if (ui->option1->isChecked()) // Naruto
+	{
+		addPieces(std::make_shared<Rook>(pieceColour::WHITE, 7, 7, pieceName::ROOK, png::rookIconWhite));
+		addPieces(std::make_shared<Rook>(pieceColour::BLACK, 0, 0, pieceName::ROOK, png::rookIconBlack));
+		addPieces(std::make_shared<Bishop>(pieceColour::WHITE, 4, 1, pieceName::BISHOP, png::bishopIconWhite));
+		addPieces(std::make_shared<Bishop>(pieceColour::BLACK, 1, 1, pieceName::BISHOP, png::bishopIconBlack));
+		addPieces(std::make_shared<King>(pieceColour::WHITE, 6, 5, pieceName::KING, png::kingIconWhite));
+		addPieces(std::make_shared<King>(pieceColour::BLACK, 1, 6, pieceName::KING, png::kingIconBlack)); 
+		isWhiteTurn_ = true;
+	}
+	else if (ui->option2->isChecked()) // Goku
+	{
+		addPieces(std::make_shared<King>(pieceColour::BLACK, 0, 4, pieceName::KING, png::kingIconBlack));
+		addPieces(std::make_shared<Rook>(pieceColour::BLACK, 1, 5, pieceName::ROOK, png::rookIconBlack));
+		addPieces(std::make_shared<Bishop>(pieceColour::BLACK, 3, 3, pieceName::BISHOP, png::bishopIconBlack));
+		addPieces(std::make_shared<King>(pieceColour::WHITE, 7, 6, pieceName::KING, png::kingIconWhite));
+		addPieces(std::make_shared<Rook>(pieceColour::WHITE, 6, 0, pieceName::ROOK, png::rookIconWhite));
+		addPieces(std::make_shared<Bishop>(pieceColour::WHITE, 7, 2, pieceName::BISHOP, png::bishopIconWhite));
+		isWhiteTurn_ = true;
 	}
 }

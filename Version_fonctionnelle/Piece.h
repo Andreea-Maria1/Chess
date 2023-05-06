@@ -36,8 +36,8 @@ enum class pieceColour
 
 namespace png 
 {
-	const QString kingIconBlack = "./photos/KingBlack.png";			/*drawing by Artist: Andreea Maria Ghioltan and Maria Bourouisa*/
-	const QString kingIconWhite = "./photos/KingWhite.png";         /*drawing by Artist: Andreea Maria Ghioltan and Maria Bourouisa*/
+	const QString kingIconBlack = "./photos/KingBlack.png";			 /*drawing by Artist: Andreea Maria Ghioltan and Maria Bourouisa*/
+	const QString kingIconWhite = "./photos/KingWhite.png";          /*drawing by Artist: Andreea Maria Ghioltan and Maria Bourouisa*/
 	const QString bishopIconWhite = "./photos/BishopWhite.png";      /*drawing by Artist: Andreea Maria Ghioltan and Maria Bourouisa*/
 	const QString bishopIconBlack = "./photos/BishopBlack.png";      /*drawing by Artist: Andreea Maria Ghioltan and Maria Bourouisa*/
 	const QString pawnIconWhite = "./photos/WhitePawn.png";          /*drawing by Artist: Andreea Maria Ghioltan and Maria Bourouisa*/
@@ -55,7 +55,7 @@ class Piece
 
 public:
 	Piece(pieceColour colour, int x, int y, pieceName name, QString icon);
-	virtual ~Piece() = default;
+	virtual ~Piece() {}
 
 	virtual bool isValidMove(Position newPosition) const = 0;
 	void setPos(int newX, int newY);
@@ -74,7 +74,6 @@ protected:
 class Rook : public Piece 
 {
 public:
-	Rook() = default;
 	Rook(pieceColour colour, int x, int y, pieceName name, QString icon);
 	bool isValidMove(Position newPosition) const override;
 };
@@ -82,7 +81,6 @@ public:
 class Bishop : public Piece 
 {
 public:
-	Bishop() = default;
 	Bishop(pieceColour colour, int x, int y, pieceName name, QString icon);
 	bool isValidMove(Position newPosition) const override;
 };
@@ -90,8 +88,8 @@ public:
 class King : public Piece 
 {
 public:
-	King() = default;
 	King(pieceColour colour, int x, int y, pieceName name, QString icon);
+	~King();
 	bool isValidMove(Position newPosition) const override;
 
 private:
@@ -101,7 +99,6 @@ private:
 class Pawn : public Piece 
 {
 public:
-	Pawn() = default;
 	Pawn(pieceColour colour, int x, int y, pieceName name, QString icon);
 	bool isValidMove (Position newPosition) const override;
 };
@@ -109,7 +106,6 @@ public:
 class Queen : public Piece 
 {
 public:
-	Queen() = default;
 	Queen(pieceColour colour, int x, int y, pieceName name, QString icon);
 	bool isValidMove(Position newPosition) const override;
 };
@@ -117,7 +113,6 @@ public:
 class Knight : public Piece 
 {
 public:
-	Knight() = default;
 	Knight(pieceColour colour, int x, int y, pieceName, QString icon);
 	bool isValidMove(Position newPosition) const override;
 };

@@ -22,7 +22,6 @@ class Button : public QPushButton
     Q_OBJECT
 public:
     Button(int x, int y, QWidget* parent = nullptr);
-    ~Button() = default;
 
     std::string getBaseColor() const;
     std::shared_ptr<Piece> getPiece() const;

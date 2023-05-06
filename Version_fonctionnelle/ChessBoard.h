@@ -18,22 +18,20 @@
 #include "Piece.h"
 #include "Button.h"
 #include "MovementManager.h"
+#include "CHESSGAME.h"
 
 #include <iostream>
 
-class ChessBoard : public QGridLayout 
+class ChessBoard : public QMainWindow 
 {
     Q_OBJECT 
 
 public:
-    ChessBoard(ChessBoard* chessBoard);
     ChessBoard(QWidget* parent = nullptr);
-    ~ChessBoard() = default;
 
     void initialisation();
     void addPieces(std::shared_ptr<Piece> piece);
     void removePiece(Button* button);
-    void deleteSpacing();
     void changeColourValidMove(Position newPosition);
     void resetColoursBoard();
 
@@ -53,15 +51,18 @@ public:
     void setButtonGreen(Button* button) const;
 
     std::vector<std::shared_ptr<Button>> getListOfButton() const;
-    std::vector<std::shared_ptr<Piece>> getlistOfPieces() const;
+
+    void clearBoard();
 
 public slots:
     void click(Button* button);
+    void startGame();
 
 private:
     std::vector<std::shared_ptr<Button>> listOfButton_;
-    std::vector<std::shared_ptr<Piece>> listOfPieces_;
     std::shared_ptr<Piece> clickedPiece_ = nullptr;
     Button* lastClickedButton_ = nullptr;
     bool isWhiteTurn_ = true;
+
+    std::unique_ptr<Ui::CHESSGAMEClass> ui;
 };

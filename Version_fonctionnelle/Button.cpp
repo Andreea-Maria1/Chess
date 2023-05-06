@@ -22,8 +22,8 @@ void Button::setPiece(std::shared_ptr<Piece> piece)
 		setIcon(QIcon());
 		return;
 	}
-	setIcon(QIcon(QString(piece->getIcon())));
 	piece->setPos(positionButton_.x, positionButton_.y);
+	setIcon(QIcon(QString(piece->getIcon())));
 }
 
 std::shared_ptr<Piece> Button::getPiece() const
@@ -40,11 +40,11 @@ void Button::resetColour()
 {
 	if (baseColour_ == "blue")
 	{
-		setStyleSheet("background-color: rgba(100,156,189,1); margin: -10px;");
+		setStyleSheet("background-color: rgba(100,156,189,1);");
 	}
 	else
 	{
-		setStyleSheet("background-color: rgba(255, 250, 240, 1); margin: -10px;");
+		setStyleSheet("background-color: rgba(255, 250, 240, 1);");
 	}
 }
 

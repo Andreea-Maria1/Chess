@@ -1,0 +1,9 @@
+namespace logic {
+
+    class GameLogic 
+    {
+
+    }
+
+
+}

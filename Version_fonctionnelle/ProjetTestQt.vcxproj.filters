@@ -57,9 +57,6 @@
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="CHESSGAME.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="ChessBoard.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -78,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MovementManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CHESSGAME.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
